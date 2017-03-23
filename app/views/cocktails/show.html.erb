@@ -5,7 +5,11 @@
 <ul>
   <% @cocktail.doses.each do |dose| %>
     <li>
-      <%= dose.description %> - <%= dose.ingredient.name %> - <%= link_to "remove", dose_path(dose, cocktail_id: @cocktail.id), method: :delete %>
+      <p>
+      <%= dose.description %> - <%= dose.ingredient.name %> - <%= link_to "remove", dose_path(dose, cocktail_id: @cocktail.id), method: :delete %> </p>
+      <% if dose.image? %>
+        <%= cl_image_tag dose.image.path, width: 200, height: 300, crop: :fill %>
+      <% end %>
     </li>
   <% end %>
 </ul>
