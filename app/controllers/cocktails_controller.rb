@@ -21,10 +21,14 @@ class CocktailsController < ApplicationController
     end
   end
 
+  # if we add a destroy for cocktails:
+  # because of the dependent destroy on the doses association,
+  # when a cocktail is deleted also all of it doses will be deleted
+
   private
 
   def cocktail_params
-    params.require(:cocktail).permit(:name)
+    params.require(:cocktail).permit(:name, :picture, :picture_cache)
   end
 
 end
