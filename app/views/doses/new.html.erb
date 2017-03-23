@@ -1,0 +1,10 @@
+<%= simple_form_for [@cocktail, @dose] do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :description %>
+
+  <%= f.input :ingredient_id, collection: Ingredient.all %>
+<!--   <%= f.association :ingredient, collection: Ingredient.all, value_method: :id, label_method: :name %> -->
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "Cancel", cocktail_path(@cocktail) %>
