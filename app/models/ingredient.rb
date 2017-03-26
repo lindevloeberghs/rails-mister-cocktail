@@ -7,12 +7,11 @@ class Ingredient < ApplicationRecord
 
   # standard many to many association:
 
-  # has_many :cocktails, through: :doses
+  has_many :cocktails, through: :doses
   # destroying an ingredient used by at least a cocktail
   # -> fails because there are joint records in doses:
   # ActiveRecord::InvalidForeignKey: PG::ForeignKeyViolation: ERROR:  update or delete on table "ingredients" violates foreign key constraint "fk_rails_961afcf26a" on table "doses"
   # DETAIL:  Key (id)=(2) is still referenced from table "doses".
-
 
   # so we want to deal with this with one of the dependent: options
 
@@ -30,10 +29,11 @@ class Ingredient < ApplicationRecord
   # -> then you can rescue this specific error in your controller :)
 
   # option 3
-  has_many :cocktails, through: :doses, dependent: :restrict_with_error
+  # has_many :cocktails, through: :doses, dependent: :restrict_with_error
   # destroying an ingredient used by at least a cocktail
   # -> deals with it by not failing but just returning false
   # -> so you can do if ingredient.destroy in your controller :)
+  # note - rake doesn't expect this behavior so 'Ingredient should not be able to destroy self if has dose children' will fail
 
   validates :name, presence: true, uniqueness: true
 end
