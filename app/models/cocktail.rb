@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: cocktails
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  picture    :string
+#
+
 class Cocktail < ApplicationRecord
   has_many :doses, dependent: :destroy
   # dependent destroy makes sure that all doses belonging to a cocktail are destroyed too when that cocktail is destroyed
@@ -6,6 +17,7 @@ class Cocktail < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
+  # image upload with carrierwave
   mount_uploader :picture, PictureUploader
 
 end

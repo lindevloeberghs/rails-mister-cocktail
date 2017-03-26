@@ -5,8 +5,12 @@
   <%= f.input :description %>
 
   <%= f.input :ingredient_id, collection: Ingredient.all %>
-<!--   OR <%= f.association :ingredient, collection: Ingredient.all, value_method: :id, label_method: :name %> -->
+  <!--
+  OR different syntax with more customization options (note: slign strong params):
+  <%= f.association :ingredient, collection: Ingredient.all, value_method: :id, label_method: :name %>
+  -->
 
+  <!-- image upload with attachinary -->
   <%= f.input :image, as: :attachinary %>
 
   <%= f.submit %>

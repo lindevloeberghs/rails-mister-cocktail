@@ -1,7 +1,13 @@
 <%= simple_form_for @cocktail do |f| %>
+
   <%= f.error_notification %>
+
   <%= f.input :name %>
+
+  <!-- image upload with carrierwave -->
   <%= f.input :picture %>
   <%= f.input :picture_cache, as: :hidden %>
+
   <%= f.submit %>
+
 <% end %>
